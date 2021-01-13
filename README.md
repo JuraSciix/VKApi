@@ -2,7 +2,7 @@
 Минималистичная библиотека для работы с VK API на Java.
 
 ## Примечание
-На данный момент в библиотеке реализовано: обращение к [методам VK API](https://vk.com/dev/api_requests), взаимодействие с [User Long Poll](https://vk.com/dev/bots_longpoll) и [Group Long Poll](https://vk.com/dev/using_longpoll).
+На данный момент в библиотеке реализовано: обращение к [методам VK API](https://vk.com/dev/api_requests), взаимодействие с [User Long Poll](https://vk.com/dev/using_longpoll) и [Group Long Poll](https://vk.com/dev/bots_longpoll).
 
 ### В планах
 * не забыть про проект.
