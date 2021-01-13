@@ -6,7 +6,7 @@ import com.vk.api.objects.ApiResponse;
 public class UserSession extends LongPollSession {
 
     public static UserSession fromResponse(ApiResponse response) {
-        return response.loadType(UserSession.class);
+        return response.loadResponse(UserSession.class);
     }
 
     @Override

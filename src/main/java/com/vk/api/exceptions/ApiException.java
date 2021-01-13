@@ -4,7 +4,7 @@ import com.vk.api.objects.ApiError;
 
 public class ApiException extends Exception {
 
-    private final ApiError error;
+    public final ApiError error;
 
     public ApiException(ApiError error) {
         this.error = error;
@@ -16,6 +16,6 @@ public class ApiException extends Exception {
 
     @Override
     public String getMessage() {
-        return error.code + ": " + error.message;
+        return "[" + error.code + "] " + error.message;
     }
 }

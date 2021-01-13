@@ -1,7 +1,7 @@
 package com.vk.api.objects;
 
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
+import com.google.gson.annotations.SerializedName;
 
 import java.lang.reflect.Type;
 import java.util.Objects;
@@ -10,35 +10,65 @@ import static com.vk.api.VKApi.GSON;
 
 public class ApiResponse {
 
-    public JsonElement json;
+    @SerializedName("response")
+    public JsonElement response;
 
-    public ApiResponse(JsonElement json) {
-        this.json = json;
+    @SerializedName("execute_errors")
+    public JsonElement executeErrors;
+
+    public JsonElement getResponse() {
+        return response;
     }
 
-    public JsonElement getJson() {
-        return json;
+    public void setResponse(JsonElement response) {
+        this.response = response;
     }
 
-    public void setJson(JsonObject json) {
-        this.json = json;
+    public JsonElement getExecuteErrors() {
+        return executeErrors;
     }
 
-    public <T> T loadType(Class<T> tClass) {
-        return loadType((Type) tClass);
+    public void setExecuteErrors(JsonElement executeErrors) {
+        this.executeErrors = executeErrors;
     }
 
-    public <T> T loadType(Type type) {
-        return GSON.fromJson(json, type);
+    public <T> T loadResponse(Class<T> typeClass) {
+        return loadResponse((Type) typeClass);
+    }
+
+    public <T> T loadResponse(Type type) {
+        return GSON.fromJson(response, type);
+    }
+
+    public <T> T loadExecuteErrors(Class<T> typeClass) {
+        return loadResponse((Type) typeClass);
+    }
+
+    public <T> T loadExecuteErrors(Type type) {
+        return GSON.fromJson(executeErrors, type);
     }
 
     @Override
     public boolean equals(Object o) {
-        return (this == o) || (o instanceof ApiResponse && Objects.equals(json, ((ApiResponse) o).json));
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof ApiResponse)) {
+            return false;
+        }
+        ApiResponse other = (ApiResponse) o;
+
+        return Objects.equals(response, other.response) &&
+                Objects.equals(executeErrors, other.executeErrors);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(json);
+        return Objects.hash(response, executeErrors);
+    }
+
+    @Override
+    public String toString() {
+        return "ApiResponse{response=" + response + ", executeErrors=" + executeErrors + '}';
     }
 }

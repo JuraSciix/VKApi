@@ -1,14 +1,12 @@
 package com.vk.api.exceptions;
 
-import java.util.Objects;
+public class LongPollException extends Exception {
 
-public abstract class LongPollException extends Exception {
+    public final int failed;
 
-    private final int failed;
+    public final String source;
 
-    private final String source;
-
-    protected LongPollException(int failed, String source) {
+    public LongPollException(int failed, String source) {
         this.failed = failed;
         this.source = source;
     }
@@ -36,22 +34,5 @@ public abstract class LongPollException extends Exception {
     @Override
     public String getMessage() {
         return source + " (" + failed + ')';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!(o instanceof LongPollException)) {
-            return false;
-        }
-        LongPollException a = (LongPollException) o;
-        return failed == a.failed && Objects.equals(source, a.source);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(failed, source);
     }
 }

@@ -17,11 +17,11 @@ public class ApiError {
     @SerializedName("request_params")
     public List<RequestParam> requestParams;
 
-    @SerializedName("captcha_sid")
-    public long captchaSid;
-
     @SerializedName("captcha_img")
     public URL captchaImage;
+
+    @SerializedName("captcha_sid")
+    public long captchaSid;
 
     public int getCode() {
         return code;
@@ -47,20 +47,20 @@ public class ApiError {
         this.requestParams = requestParams;
     }
 
-    public long getCaptchaSid() {
-        return captchaSid;
-    }
-
-    public void setCaptchaSid(long captchaSid) {
-        this.captchaSid = captchaSid;
-    }
-
     public URL getCaptchaImage() {
         return captchaImage;
     }
 
     public void setCaptchaImage(URL captchaImage) {
         this.captchaImage = captchaImage;
+    }
+
+    public long getCaptchaSid() {
+        return captchaSid;
+    }
+
+    public void setCaptchaSid(long captchaSid) {
+        this.captchaSid = captchaSid;
     }
 
     @Override
@@ -71,16 +71,26 @@ public class ApiError {
         if (!(o instanceof ApiError)) {
             return false;
         }
-        ApiError a = (ApiError) o;
-        return code == a.code &&
-                Objects.equals(message, a.message) &&
-                Objects.equals(requestParams, a.requestParams) &&
-                captchaSid == a.captchaSid &&
-                Objects.equals(captchaImage, a.captchaImage);
+        ApiError other = (ApiError) o;
+
+        return code == other.code &&
+                captchaSid == other.captchaSid &&
+                Objects.equals(message, other.message) &&
+                Objects.equals(requestParams, other.requestParams) &&
+                Objects.equals(captchaImage, other.captchaImage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(code, message, requestParams, captchaSid, captchaImage);
+        return Objects.hash(code, message, requestParams, captchaImage, captchaSid);
+    }
+
+    @Override
+    public String toString() {
+        return "ApiError{code=" + code +
+                ", message='" + message +
+                "', requestParams=" + requestParams +
+                ", captchaImage=" + captchaImage +
+                ", captchaSid=" + captchaSid + '}';
     }
 }

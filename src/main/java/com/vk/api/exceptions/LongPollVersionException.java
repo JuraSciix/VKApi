@@ -2,8 +2,6 @@ package com.vk.api.exceptions;
 
 import com.vk.api.longpoll.LongPollListener;
 
-import java.util.Objects;
-
 public class LongPollVersionException extends LongPollException {
 
     private final int minVersion;
@@ -24,22 +22,5 @@ public class LongPollVersionException extends LongPollException {
     @Override
     public int getMaxVersion() {
         return maxVersion;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (!super.equals(o)) {
-            return false;
-        }
-        LongPollVersionException e = (LongPollVersionException) o;
-        return minVersion == e.minVersion && maxVersion == e.maxVersion;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), minVersion, maxVersion);
     }
 }

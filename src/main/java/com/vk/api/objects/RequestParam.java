@@ -12,7 +12,7 @@ public class RequestParam {
     @SerializedName("value")
     public String value;
 
-    public RequestParam(String key, String value) {
+    RequestParam(String key, String value) {
         this.key = key;
         this.value = value;
     }
@@ -41,12 +41,19 @@ public class RequestParam {
         if (!(o instanceof RequestParam)) {
             return false;
         }
-        RequestParam a = (RequestParam) o;
-        return Objects.equals(key, a.key) && Objects.equals(value, a.value);
+        RequestParam other = (RequestParam) o;
+
+        return Objects.equals(key, other.key) &&
+                Objects.equals(value, other.value);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(key, value);
+    }
+
+    @Override
+    public String toString() {
+        return "RequestParam{key='" + key + "', value='" + value + "'}";
     }
 }

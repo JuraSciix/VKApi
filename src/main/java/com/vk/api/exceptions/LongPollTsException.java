@@ -2,8 +2,6 @@ package com.vk.api.exceptions;
 
 import com.vk.api.longpoll.LongPollListener;
 
-import java.util.Objects;
-
 public class LongPollTsException extends LongPollException {
 
     private final int newTs;
@@ -16,15 +14,5 @@ public class LongPollTsException extends LongPollException {
     @Override
     public int getNewTs() {
         return newTs;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        return (this == o) || (super.equals(o) && newTs == ((LongPollTsException) o).newTs);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), newTs);
     }
 }

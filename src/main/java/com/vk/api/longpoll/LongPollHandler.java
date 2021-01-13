@@ -47,12 +47,19 @@ public class LongPollHandler {
         if (!(o instanceof LongPollHandler)) {
             return false;
         }
-        LongPollHandler a = (LongPollHandler) o;
-        return Objects.equals(json, a.json) && newTs == a.newTs;
+        LongPollHandler other = (LongPollHandler) o;
+
+        return Objects.equals(json, other.json) &&
+                newTs == other.newTs;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(json, newTs);
+    }
+
+    @Override
+    public String toString() {
+        return "LongPollHandler{json=" + json + ", newTs=" + newTs + '}';
     }
 }

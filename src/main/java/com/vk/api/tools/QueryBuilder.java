@@ -7,15 +7,15 @@ import java.net.URLEncoder;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class QueryBuilder {
+public final class QueryBuilder {
 
-    public static String build(List<RequestParam> requestParams) {
-        StringJoiner sj = new StringJoiner("&");
+    public static String build(List<RequestParam> params) {
+        StringJoiner result = new StringJoiner("&");
 
-        for (RequestParam requestParam: requestParams) {
-            sj.add(encode(requestParam.key) + '=' + encode(requestParam.value));
+        for (RequestParam param: params) {
+            result.add(encode(param.key) + '=' + encode(param.value));
         }
-        return sj.toString();
+        return result.toString();
     }
 
     private static String encode(String str) {
